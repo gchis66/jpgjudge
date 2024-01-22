@@ -818,6 +818,7 @@ function handleGuess(isAIGuess) {
     streakCounter.innerText = parseInt(streakCounter.innerText) + 1;
   } else {
     // Incorrect guess logic
+    showSharePopup(parseInt(streakCounter.innerText));
     streakCounter.innerText = 0;
   }
   displayRandomImage();
@@ -829,6 +830,40 @@ document
 document
   .querySelector(".circle-button.green")
   .addEventListener("click", () => handleGuess(false));
+
+function showSharePopup(streak) {
+  const sharePopup = document.getElementById("sharePopup");
+  const shareMessage = document.getElementById("shareMessage");
+  let message;
+
+  if (streak <= 3) {
+    message = `Only ${streak}? AI is going to eat you alive.`;
+  } else if (streak <= 10) {
+    message = `${streak}? Not bad, with a bit more practice, you might develop a knack for this.`;
+  } else {
+    message = `Impressive! AI couldn't beat your eye for detail.`;
+  }
+
+  const tweetText = `Think you have an eye for AI fakes? I just got a streak of ${streak}, see if you can beat my score at www.jpgjudge.com !`;
+  const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+    tweetText
+  )}`;
+  const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+    window.location.href
+  )}&quote=${encodeURIComponent(tweetText)}`;
+
+  shareMessage.innerText = message;
+  document.getElementById("shareTwitter").href = tweetUrl;
+  document.getElementById("shareFacebook").href = facebookUrl;
+
+  sharePopup.style.display = "block";
+}
+
+function closePopup() {
+  document.getElementById("sharePopup").style.display = "none";
+}
+
+document.getElementById("closePopup").addEventListener("click", closePopup);
 
 // Initial image fetch
 displayRandomImage();

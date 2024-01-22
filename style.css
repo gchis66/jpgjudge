@@ -134,6 +134,52 @@ h2 {
   opacity: 0; /* Reduce glossiness when clicked */
 }
 
+/* Popup Styling */
+#sharePopup {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  width: 80%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Popup Buttons */
+#sharePopup a {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#shareTwitter {
+  background-color: #1da1f2; /* Twitter Blue */
+}
+
+#shareFacebook {
+  background-color: #4267b2; /* Facebook Blue */
+}
+
+/* Close Button */
+#closePopup {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+}
+
 /* MEDIA QUERIES */
 @media screen and (max-width: 600px) and (orientation: portrait) {
   body {
